@@ -13,6 +13,6 @@ Written with `python`.
 
 Usage:
 
-```powershell
+```bash
 python ust-trans.py input.ust output.ust
 ```
