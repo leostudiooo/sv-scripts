@@ -9,4 +9,3 @@ with open(sys.argv[1], "r", encoding="shift-jis") as inputFile:
 	for ln in inputFile:
 		outputFile.write(re.sub(r"^Lyric=\S{1} ", "Lyric=", ln))
 outputFile.close()
-
