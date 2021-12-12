@@ -1,9 +1,9 @@
 # sv-scripts
 Leo's script repo for Synthesizer V Studio Pro by @dreamtonics .
 
-## delayed-autosave
+## AutoSave-alert.js
 
-Not finished yet. Please hold on.
+Since I cannot find a method to access to the project file, it is just an alert that reminds you to save your project. ;(
 
 ## ust-trans
 
