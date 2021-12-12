@@ -17,7 +17,7 @@ function main() {
     var alertTime = 1000 * Number(
         SV.showInputBox(
             "Autosave Helper",
-            "When do you want me to remind you to save the project? (In seconds)",
+            "When do you want me to remind you to save the project? (In seconds, default 600)",
             600
         )
     );
