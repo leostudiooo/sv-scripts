@@ -30,5 +30,10 @@ function alrt(t) {
         "Hi!",
         "It's time for a Ctrl+S!"
     )
-    SV.setTimeout(t, alrt(t));
+    SV.setTimeout(
+        t,
+        function() {
+            alrt(t);
+        }
+    );
 }
