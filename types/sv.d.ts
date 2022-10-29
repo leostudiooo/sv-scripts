@@ -1,16 +1,16 @@
 /*
 Synthesizer V Studio API Definition for Typescript and Javascript
-Written by Li Lingfeng on October 29, 2022
 Under GNU License
 */
-export interface ArrangementSelectionState extends NestedObject, SelectionStateBase, GroupSelection { }
 
-export interface ArrangementView extends NestedObject {
+interface ArrangementSelectionState extends NestedObject, SelectionStateBase, GroupSelection { }
+
+interface ArrangementView extends NestedObject {
 	getNavigation: () => CoordinateSystem;
 	getSelection: () => ArrangementSelectionState;
 }
 
-export interface Automation extends NestedObject {
+interface Automation extends NestedObject {
 	add: (b: number, v: number) => boolean;
 	clone: () => Automation;
 	get: (b: number) => number;
@@ -20,48 +20,48 @@ export interface Automation extends NestedObject {
 	getLinear: (b: number) => number;
 	getPoints: (begin: number, end: number) => Array<Array<number>>;
 	remove: (b: number) => boolean;
-	removeAll: () => undefined;
+	removeAll: () => void;
 	simplify: (begin: number, end: number, threshold?: number) => boolean;
 }
 
-export interface CoordinateSystem extends NestedObject {
+interface CoordinateSystem extends NestedObject {
 	getTimePxPerUnit: () => number;
 	getTimeViewRange: () => Array<number>;
 	getValuePxPerUnit: () => number;
 	getValueViewRange: () => Array<number>;
-	setTimeLeft: (time: number) => undefined;
-	setTimeRight: (time: number) => undefined;
-	setTimeScale: (scale: number) => undefined;
-	setValueCenter: (v: number) => undefined;
-	snap: (b: number) => undefined;
-	t2x: (t: number) => undefined;
-	v2y: (v: number) => undefined;
-	x2t: (x: number) => undefined;
-	y2v: (y: number) => undefined;
+	setTimeLeft: (time: number) => void;
+	setTimeRight: (time: number) => void;
+	setTimeScale: (scale: number) => void;
+	setValueCenter: (v: number) => void;
+	snap: (b: number) => void;
+	t2x: (t: number) => void;
+	v2y: (v: number) => void;
+	x2t: (x: number) => void;
+	y2v: (y: number) => void;
 }
 
-export interface GroupSelection {
+interface GroupSelection {
 	clearGroups: () => boolean;
 	getSelectedGroups: () => Array<NoteGroupReference>;
 	hasSelectedGroups: () => boolean;
-	selectGroup: (reference: NoteGroupReference) => undefined;
+	selectGroup: (reference: NoteGroupReference) => void;
 	unselectGroup: (reference: NoteGroupReference) => boolean;
 }
 
-export interface MainEditorView extends NestedObject {
+interface MainEditorView extends NestedObject {
 	getCurrentGroup: () => NoteGroupReference;
 	getCurrentTrack: () => Track;
 	getNavigation: () => CoordinateSystem;
 	getSelection: () => TrackInnerSelectionState;
 }
 
-export interface NestedObject {
+interface NestedObject {
 	getIndexInParent: () => number;
 	getParent: () => NestedObject | undefined;
 	isMemoryManaged: () => boolean;
 }
 
-export interface Note extends NestedObject {
+interface Note extends NestedObject {
 	clone: () => Note;
 	getAttributes: () => object;
 	getDuration: () => number;
@@ -70,15 +70,15 @@ export interface Note extends NestedObject {
 	getOnset: () => number;
 	getPhonemes: () => string;
 	getPitch: () => number;
-	setAttributes: (attributes: object) => undefined;
-	setDuration: (t: number) => undefined;
-	setLyrics: (lyrics: string) => undefined;
-	setOnset: (t: number) => undefined;
-	setPitch: (pitchNumber: number) => undefined;
-	setTimeRange: (onset: number, duration: number) => undefined;
+	setAttributes: (attributes: object) => void;
+	setDuration: (t: number) => void;
+	setLyrics: (lyrics: string) => void;
+	setOnset: (t: number) => void;
+	setPitch: (pitchNumber: number) => void;
+	setTimeRange: (onset: number, duration: number) => void;
 }
 
-export interface NoteGroup extends NestedObject {
+interface NoteGroup extends NestedObject {
 	addNote: (note: Note) => number;
 	clone: () => NoteGroup;
 	getName: () => string;
@@ -86,11 +86,11 @@ export interface NoteGroup extends NestedObject {
 	getNumNotes: () => number;
 	getParameter: (type: string) => Automation;
 	getUUID: () => string;
-	removeNote: (index: number) => undefined;
-	setName: (name: string) => undefined;
+	removeNote: (index: number) => void;
+	setName: (name: string) => void;
 }
 
-export interface NoteGroupReference extends NestedObject {
+interface NoteGroupReference extends NestedObject {
 	clone: () => NoteGroupReference;
 	getDuration: () => number;
 	getEnd: () => number;
@@ -101,28 +101,28 @@ export interface NoteGroupReference extends NestedObject {
 	getVoice: () => object;
 	isInstrumental: () => boolean;
 	isMain: () => boolean;
-	setPitchOffset: (pitchOffset: number) => undefined;
-	setTarget: (group: NoteGroup) => undefined;
-	setVoice: (attributes: object) => undefined;
+	setPitchOffset: (pitchOffset: number) => void;
+	setTarget: (group: NoteGroup) => void;
+	setVoice: (attributes: object) => void;
 }
 
-export interface SelectionStateBase {
+interface SelectionStateBase {
 	clearAll: () => boolean;
 	hasSelectedContent: () => boolean;
 	hasUnfinishedEdits: () => boolean;
 }
 
-export interface PlayBackControl extends NestedObject {
+interface PlayBackControl extends NestedObject {
 	getPlayhead: () => number;
 	getStatus: () => string;
-	loop: (beginSecond: number, endSecond: number) => undefined;
-	pause: () => undefined;
-	play: () => undefined;
-	seek: (time: number) => undefined;
-	stop: () => undefined;
+	loop: (beginSecond: number, endSecond: number) => void;
+	pause: () => void;
+	play: () => void;
+	seek: (time: number) => void;
+	stop: () => void;
 }
 
-export interface Project extends NestedObject {
+interface Project extends NestedObject {
 	addNoteGroup: (group: NoteGroup, index?: number) => number;
 	addTrack: (track: Track) => number;
 	getDuration: () => number;
@@ -132,12 +132,12 @@ export interface Project extends NestedObject {
 	getNumTracks: () => number;
 	getTimeAxis: () => TimeAxis;
 	getTrack: () => Track;
-	newUndoRecord: () => undefined;
-	removeNoteGroup: (index: number) => undefined;
-	removeTrack: (index: number) => undefined;
+	newUndoRecord: () => void;
+	removeNoteGroup: (index: number) => void;
+	removeTrack: (index: number) => void;
 }
 
-export interface SV {
+public interface SV {
 	QUARTER: number;
 	blackKey: (k: number) => boolean;
 	blick2Quarter: (b: number) => number;
@@ -145,7 +145,7 @@ export interface SV {
 	blickRoundDiv: (dividend: number, divisor: number) => number;
 	blickRoundTo: (b: number, interval: number) => number;
 	create: (type: string) => object;
-	finish: () => undefined;
+	finish: () => void;
 	freq2Pitch: (f: number) => number;
 	getArrangement: () => ArrangementView;
 	getHostClipboard: () => string;
@@ -157,24 +157,24 @@ export interface SV {
 	pitch2Freq: (p: number) => number;
 	quarter2Blick: (q: number) => number;
 	seconds2Blick: (s: number, bpm: number) => number;
-	setHostClipboard: (text: string) => undefined;
-	setTimeout: (timeOut: number, callback: () => any) => undefined;
+	setHostClipboard: (text: string) => void;
+	setTimeout: (timeOut: number, callback: () => any) => void;
 	showCustomDialog: (form: object) => object;
-	showCustomDialogAsync: (form: object, callback: () => any) => undefined;
+	showCustomDialogAsync: (form: object, callback: () => any) => void;
 	showInputBox: (title: string, message: string, defaultText: string) => string;
-	showInputBoxAsync: (title: string, message: string, defaultText: string, callback: (ret: string) => any) => undefined;
-	showMessageBox: (title: string, message: string) => undefined;
-	showMessageBoxAsync: (title: string, message: string, callback?: () => any) => undefined;
+	showInputBoxAsync: (title: string, message: string, defaultText: string, callback: (ret: string) => any) => void;
+	showMessageBox: (title: string, message: string) => void;
+	showMessageBoxAsync: (title: string, message: string, callback?: () => any) => void;
 	showOkCancelBox: (title: string, message: string) => boolean;
-	showOkCancelBoxAsync: (title: string, message: string, callback: (ret: boolean) => any) => undefined;
+	showOkCancelBoxAsync: (title: string, message: string, callback: (ret: boolean) => any) => void;
 	showYesNoCancelBox: (title: string, message: string) => string;
-	showYesNoCancelBoxAsync: (title: string, message: string, callback: (ret: string) => any) => undefined;
+	showYesNoCancelBoxAsync: (title: string, message: string, callback: (ret: string) => any) => void;
 	T: (text: string) => string;
 }
 
-export interface TimeAxis extends NestedObject {
-	addMeasureMark: (measure: number, numerator: number, denominator: number) => undefined;
-	addTempoMark: (b: number, bpm: number) => undefined;
+interface TimeAxis extends NestedObject {
+	addMeasureMark: (measure: number, numerator: number, denominator: number) => void;
+	addTempoMark: (b: number, bpm: number) => void;
 	clone: () => TimeAxis;
 	getAllMeasureMarks: () => Array<object>;
 	getAllTempoMarks: () => Array<object>;
@@ -188,7 +188,7 @@ export interface TimeAxis extends NestedObject {
 	removeTempoMark: (b: number) => boolean;
 }
 
-export interface Track extends NestedObject {
+interface Track extends NestedObject {
 	addGroupReference: (group: NoteGroupReference) => number;
 	clone: () => Track;
 	getDisplayColor: () => string;
@@ -198,16 +198,16 @@ export interface Track extends NestedObject {
 	getName: () => string;
 	getNumGroups: () => string;
 	isBounced: () => boolean;
-	removeGroupReference: (index: number) => undefined;
-	setBounced: (enabled: boolean) => undefined;
-	setDisplayColor: (hexColor: string) => undefined;
-	setName: (name: string) => undefined;
+	removeGroupReference: (index: number) => void;
+	setBounced: (enabled: boolean) => void;
+	setDisplayColor: (hexColor: string) => void;
+	setName: (name: string) => void;
 }
 
-export interface TrackInnerSelectionState extends NestedObject, SelectionStateBase, GroupSelection {
+interface TrackInnerSelectionState extends NestedObject, SelectionStateBase, GroupSelection {
 	clearNotes: () => boolean;
 	getSelectedNotes: () => Array<Note>;
 	hasSelectedNotes: () => boolean;
-	selectNote: (note: Note) => undefined;
+	selectNote: (note: Note) => void;
 	unselectNote: (note: Note) => boolean;
 }
