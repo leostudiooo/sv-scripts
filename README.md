@@ -1,6 +1,10 @@
 # sv-scripts
 Leo's script repo for Synthesizer V Studio Pro by @dreamtonics .
 
+## sv.d.ts
+
+This includes everything in the scripting manual and is useful for scripting.
+
 ## AutoSave-alert.js
 
 Since I cannot find a method to access to the project file, it is just an alert that reminds you to save your project. ;(
