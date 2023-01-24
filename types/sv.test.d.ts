@@ -32,6 +32,6 @@ declare module SV {
 	const showYesNoCancelBoxAsync: (title: string, message: string, callback: (ret: string) => any) => void;
 	const T: (text: string) => string;
 
-	export interface ArrangementSelectionState extends NestedObject, SelectionStateBase, GroupSelection { }
+	
 
 }
